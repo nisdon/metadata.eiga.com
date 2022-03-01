@@ -28,17 +28,25 @@
 	  <expression>&lt;title&gt;(.*?):</expression>
     </RegExp>
 
-	<RegExp input="$$1" output="&lt;originaltitle&gt;\1&lt;/originaltitle&gt;" dest="8+">
+	<RegExp input="$$1" output="\1" dest="6">
 	  <expression>&gt;原題：(.*?)&lt;</expression>
+    </RegExp>
+	
+	<RegExp input="$$6" output="&lt;originaltitle&gt;\1&lt;/originaltitle&gt;" dest="8+">
+	  <expression></expression>
+    </RegExp>
+
+	<RegExp input="$$6" output="\1.*" dest="7+">
+	  <expression repeat="yes">([a-z|A-Z]+)</expression>
     </RegExp>
 	
     <RegExp input="$$1" output="&lt;year&gt;\1&lt;/year&gt;&lt;runtime&gt;\2&lt;/runtime&gt;" dest="8+">
 	  <expression>&quot;data&quot;&gt;([0-9]*?)年製作／([0-9]*?)分</expression>
     </RegExp>
 
-    <RegExp input="$$7" output="&lt;country&gt;\1&lt;/country&gt;" dest="8+">
-      <RegExp input="$$1" output="\1・" dest="7">
-		<expression noclearn="7">&quot;data&quot;&gt;.*?([^／]*?)[&lt;|合]</expression>
+    <RegExp input="$$6" output="&lt;country&gt;\1&lt;/country&gt;" dest="8+">
+      <RegExp input="$$1" output="\1・" dest="6">
+		<expression noclearn="6">&quot;data&quot;&gt;.*?([^／]*?)[&lt;|合]</expression>
       </RegExp>
       <expression repeat="yes">(.+)・</expression>
     </RegExp>
@@ -63,9 +71,9 @@
       <expression>itemprop=&quot;ratingValue&quot;&gt;(.*?)&lt;</expression>
     </RegExp>
 
-    <RegExp input="$$7" output="&lt;chain function=&quot;GetTMDBGenresByIdChain&quot;&gt;$$7::ja&lt;/chain&gt;" dest="8+">
-      <RegExp input="$$3" output="\1" dest="7">
-		<expression noclean="3">&quot;id&quot;:([0-9]+)</expression>
+    <RegExp input="$$6" output="&lt;chain function=&quot;GetTMDBGenresByIdChain&quot;&gt;$$6::ja&lt;/chain&gt;" dest="8+">
+      <RegExp input="$$3" output="\1" dest="6">
+		<expression noclean="3">&quot;id&quot;:([0-9]+).*&quot;original_title&quot;:&quot;$$7&quot;</expression>
       </RegExp>
 	  <expression></expression>
     </RegExp>
