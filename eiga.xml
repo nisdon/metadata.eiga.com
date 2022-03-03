@@ -15,7 +15,7 @@
 
 <GetSearchResults clearbuffers="no" dest="8">
   <RegExp input="$$6" output="&lt;?xml version=&quot;1.02&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;results&gt;\1&lt;/results&gt;" dest="8">
-    <RegExp input="$$1" output="&lt;entity&gt;&lt;title&gt;\2&lt;/title&gt;&lt;url&gt;https://eiga.com/movie/\1/&lt;/url&gt;&lt;url&gt;https://eiga.com/movie/\1/photo/&lt;/url&gt;&lt;url&gt;https://api.themoviedb.org/3/search/movie?api_key=f090bb54758cabf231fb605d3e3e0468&amp;query=\2;&amp;language=ja&lt;/url&gt;&lt;/entity&gt;" dest="6">
+    <RegExp input="$$1" output="&lt;entity&gt;&lt;title&gt;\2&lt;/title&gt;&lt;url&gt;https://eiga.com/movie/\1/&lt;/url&gt;&lt;url&gt;https://api.themoviedb.org/3/search/movie?api_key=f090bb54758cabf231fb605d3e3e0468&amp;query=\2;&amp;language=ja&lt;/url&gt;&lt;/entity&gt;" dest="6">
       <expression repeat="yes" noclean="1">&lt;a href=&quot;/movie/([0-9]*?)/&quot;&gt;.*?&quot;title&quot;&gt;(.*?)&lt;</expression>
     </RegExp>
     <expression noclean="1"></expression>
@@ -24,22 +24,31 @@
 
 <GetDetails dest="5">
   <RegExp input="$$8" output="&lt;details&gt;\1&lt;/details&gt;" dest="5">
-    <RegExp input="$$1" output="&lt;title&gt;\1&lt;/title&gt;" dest="8">
+
+    <RegExp input="$$1" output="\1" dest="10">
+	  <expression>og:url&quot;.*?([0-9]+)/</expression>
+    </RegExp>
+	
+    <RegExp input="$$1" output="&lt;title&gt;\1&lt;/title&gt;" dest="6">
 	  <expression>&lt;title&gt;(.*?):</expression>
+    </RegExp>
+	<RegExp input="$$6" output="\1.*" dest="11+">
+	  <expression repeat="yes">(.+?)( |　|$)</expression>
+    </RegExp>
+	<RegExp input="$$6" output="&lt;title&gt;\1&lt;/title&gt;" dest="8">
+	  <expression></expression>
     </RegExp>
 
 	<RegExp input="$$1" output="\1" dest="6">
 	  <expression>&gt;原題：(.*?)&lt;</expression>
     </RegExp>
-	
 	<RegExp input="$$6" output="&lt;originaltitle&gt;\1&lt;/originaltitle&gt;" dest="8+">
 	  <expression></expression>
     </RegExp>
-
-	<RegExp input="$$6" output="\1.*" dest="7+">
-	  <expression repeat="yes">([a-z|A-Z]+)</expression>
+	<RegExp input="$$6" output="\1.*" dest="12+">
+	  <expression repeat="yes">(.+?)(&.*;|$)</expression>
     </RegExp>
-	
+
     <RegExp input="$$1" output="&lt;year&gt;\1&lt;/year&gt;&lt;runtime&gt;\2&lt;/runtime&gt;" dest="8+">
 	  <expression>&quot;data&quot;&gt;([0-9]*?)年製作／([0-9]*?)分</expression>
     </RegExp>
@@ -55,10 +64,6 @@
 	  <expression>itemprop=&quot;director&quot;.*?name&quot;&gt;(.*?)&lt;</expression>
     </RegExp>
 
-    <RegExp input="$$2" output="&lt;thumb&gt;\1&lt;/thumb&gt;" dest="8+">
-      <expression>data-src=&quot;(.*?)\?</expression>
-    </RegExp>
-
     <RegExp input="$$1" output="&lt;actor&gt;&lt;name&gt;\1&lt;/name&gt;&lt;thumb&gt;\2&lt;/thumb&gt;&lt;/actor&gt;" dest="8+">
         <expression repeat="yes">itemprop=&quot;actor&quot;.*?alt=&quot;(.*?)&quot;.*?data-src=&quot;(.*?)\?</expression>
     </RegExp>
@@ -71,15 +76,34 @@
       <expression>itemprop=&quot;ratingValue&quot;&gt;(.*?)&lt;</expression>
     </RegExp>
 
-    <RegExp input="$$6" output="&lt;chain function=&quot;GetTMDBGenresByIdChain&quot;&gt;$$6::ja&lt;/chain&gt;" dest="8+">
-      <RegExp input="$$3" output="\1" dest="6">
-		<expression noclean="3">&quot;id&quot;:([0-9]+).*&quot;original_title&quot;:&quot;$$7&quot;</expression>
-      </RegExp>
+    <RegExp input="$$2" output="\1" dest="6">
+	  <expression>&quot;id&quot;:([0-9]+).*&quot;original_title&quot;:&quot;$$12&quot;</expression>
+    </RegExp>
+	<RegExp input="$$12" output="&lt;chain function=&quot;GetTMDBGenresByIdChain&quot;&gt;$$6::ja&lt;/chain&gt;" dest="8+">
 	  <expression></expression>
     </RegExp>
 
+    <RegExp input="$$2" output="\1" dest="6">
+	  <expression>&quot;id&quot;:([0-9]+).*&quot;title&quot;:&quot;$$11&quot;</expression>
+    </RegExp>
+	<RegExp input="$$12" output="&lt;chain function=&quot;GetTMDBGenresByIdChain&quot;&gt;$$6::ja&lt;/chain&gt;" dest="8+">
+	  <expression>^$</expression>
+    </RegExp>
+	
+	<RegExp input="$$10" output="&lt;url function=&quot;GetTest&quot;&gt;https://eiga.com/movie/\1/photo/&lt;/url&gt;" dest="8+">
+	  <expression></expression>
+	</RegExp>
+	
 	<expression noclean="1"/>
   </RegExp>
 </GetDetails>
+
+
+<GetTest dest="5">
+  <RegExp input="$$1" output="&lt;details&gt;&lt;thumb&gt;\1&lt;/thumb&gt;&lt;/details&gt;" dest="5">
+    <expression>data-src=&quot;(.*?)\?</expression>
+  </RegExp>
+</GetTest>
+
 
 </scraper>
