@@ -24,4 +24,4 @@ Kodi映画データベースへ映画情報を追加するめのScraperです。
  - metadata.common.themoviedb.org version 3.2.6
 
 ## 補足
- - ジャンルは、TMDBより取得。
+ - ジャンル取得に失敗した場合は「ドラマ」に設定。
