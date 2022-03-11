@@ -57,7 +57,7 @@
       <RegExp input="$$1" output="\1・" dest="6">
 		<expression noclearn="6">&quot;data&quot;&gt;.*?([^／]*?)[&lt;|合]</expression>
       </RegExp>
-      <expression repeat="yes">(.+)・</expression>
+      <expression repeat="yes">(.+?)・</expression>
     </RegExp>
 
     <RegExp input="$$1" output="&lt;director&gt;\1&lt;/director&gt;" dest="8+">
