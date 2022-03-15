@@ -80,24 +80,24 @@
 	  <expression clear="yes">&quot;id&quot;:([0-9]+).*&quot;title&quot;:&quot;$$11&quot;</expression>
     </RegExp>
 	<RegExp input="$$12" output="\1" dest="11">
-	  <expression></expression>
+	  <expression>(.+)</expression>
     </RegExp>
     <RegExp input="$$2" output="\1" dest="6">
 	  <expression clear="yes">&quot;id&quot;:([0-9]+).*&quot;original_title&quot;:&quot;$$11&quot;</expression>
     </RegExp>
 	<RegExp input="$$5" output="\1" dest="6">
-	  <expression></expression>
+	  <expression>([0-9]+)</expression>
     </RegExp>
 
 	<RegExp input="$$6" output="&lt;chain function=&quot;GetTMDBGenresByIdChain&quot;&gt;\1::ja&lt;/chain&gt;" dest="8+">
-	  <expression></expression>
+	  <expression>([0-9]+)</expression>
     </RegExp>
 	<RegExp input="$$6" output="&lt;genre&gt;ドラマ&lt;/genre&gt;" dest="8+">
 	  <expression>^$</expression>
     </RegExp>
 
 	<RegExp input="$$6" output="&lt;chain function=&quot;GetTMDBThumbsByIdChain&quot;&gt;\1::ja&lt;/chain&gt;" dest="8+">
-	  <expression></expression>
+	  <expression>([0-9]+)</expression>
     </RegExp>
 	<RegExp input="$$6" output="&lt;url function=&quot;GetTest&quot;&gt;https://eiga.com/movie/$$10/photo/&lt;/url&gt;" dest="8+">
 	  <expression>^$</expression>
