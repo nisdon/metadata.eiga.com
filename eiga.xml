@@ -14,8 +14,12 @@
 </CreateSearchUrl>
 
 <GetSearchResults clearbuffers="no" dest="8">
+  <RegExp input="$$1" output="\1" dest="13">
+    <expression noclean="13">&quot;og:url&quot;.*?search/(.*?)/</expression>
+  </RegExp>       
+
   <RegExp input="$$6" output="&lt;?xml version=&quot;1.02&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;results&gt;\1&lt;/results&gt;" dest="8">
-    <RegExp input="$$1" output="&lt;entity&gt;&lt;title&gt;\2&lt;/title&gt;&lt;url&gt;https://eiga.com/movie/\1/&lt;/url&gt;&lt;url&gt;https://api.themoviedb.org/3/search/movie?api_key=f090bb54758cabf231fb605d3e3e0468&amp;query=\2&amp;language=ja&lt;/url&gt;&lt;/entity&gt;" dest="6">
+    <RegExp input="$$1" output="&lt;entity&gt;&lt;title&gt;\2&lt;/title&gt;&lt;url&gt;https://eiga.com/movie/\1/&lt;/url&gt;&lt;url&gt;https://api.themoviedb.org/3/search/movie?api_key=f090bb54758cabf231fb605d3e3e0468&amp;query=$$13&amp;language=ja&lt;/url&gt;&lt;/entity&gt;" dest="6">
       <expression repeat="yes" noclean="1">&lt;a href=&quot;/movie/([0-9]*?)/&quot;&gt;.*?&quot;title&quot;&gt;(.*?)&lt;</expression>
     </RegExp>
     <expression noclean="1"></expression>
