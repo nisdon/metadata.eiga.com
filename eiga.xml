@@ -79,10 +79,6 @@
         <expression repeat="yes">itemprop=&quot;actor&quot;.*?alt=&quot;(.*?)&quot;.*?data-src=&quot;(.*?)\?</expression>
     </RegExp>
 
-    <RegExp input="$$1" output="&lt;plot&gt;\1&lt;/plot&gt;" dest="8+">
-      <expression trim="yes">itemprop=&quot;description&quot;&gt;(.*?)&lt;</expression>
-    </RegExp>
-
     <RegExp input="$$1" output="&lt;ratings&gt;&lt;rating max=&quot;5&quot;&gt;&lt;value&gt;\1&lt;/value&gt;&lt;/rating&gt;&lt;/ratings&gt;" dest="8+">
       <expression>itemprop=&quot;ratingValue&quot;&gt;(.*?)&lt;</expression>
     </RegExp>
@@ -100,6 +96,16 @@
 	  <expression>([0-9]+)</expression>
     </RegExp>
 
+    <RegExp input="$$5" output="&lt;plot&gt;\1&lt;/plot&gt;" dest="8+">
+      <RegExp input="$$1" output="\1" dest="5">
+		<expression clear="yes" trim="yes">itemprop=&quot;description&quot;&gt;(.*?)&lt;</expression>
+      </RegExp>
+      <expression>(.+)</expression>
+    </RegExp>
+    <RegExp input="$$5" output="&lt;chain function=&quot;GetTMDBPlotByIdChain&quot;&gt;$$6::ja&lt;/chain&gt;" dest="8+">
+	  <expression>^$</expression>
+    </RegExp>
+	
 	<RegExp input="$$6" output="&lt;chain function=&quot;GetTMDBGenresByIdChain&quot;&gt;\1::ja&lt;/chain&gt;" dest="8+">
 	  <expression>([0-9]+)</expression>
     </RegExp>
