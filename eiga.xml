@@ -61,7 +61,7 @@
     </RegExp>
 
     <RegExp input="$$1" output="&lt;runtime&gt;\1&lt;/runtime&gt;" dest="8+">
-	  <expression>&quot;data&quot;&gt;／([0-9]*?)分</expression>
+	  <expression>年製作／([0-9]*?)分</expression>
     </RegExp>
 
     <RegExp input="$$6" output="&lt;country&gt;\1&lt;/country&gt;" dest="8+">
