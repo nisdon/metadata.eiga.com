@@ -15,7 +15,7 @@
 
 <GetSearchResults clearbuffers="no" dest="8">
   <RegExp input="$$1" output="\1" dest="13">
-    <expression noclean="13">&quot;og:url&quot;.*?search/(.*?)[（|/]</expression>
+    <expression noclean="13">&quot;og:url&quot;.*?search/(.*?)/</expression>
   </RegExp>       
 
   <RegExp input="$$6" output="&lt;?xml version=&quot;1.02&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;results&gt;\1&lt;/results&gt;" dest="8">
