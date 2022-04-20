@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="metadata.eiga.com"
        name="Eiga.com Database"
-       version="1.0.24"
+       version="1.0.27"
        provider-name="nisdon">
   <requires>
     <import addon="xbmc.metadata" version="2.1.0"/>
@@ -13,7 +13,7 @@
     <summary lang="en">Scraper for Eiga.com Database</summary>
     <summary lang="ja_JP">映画.comのScraper</summary>
     <description lang="en">Scraper to add metadata for movie database.</description>
-    <description lang="ja_JP">映画データベースへ映画情報を追加するめのScraperです。</description>
+    <description lang="ja_JP">このスクレーパーは、映画.comから情報を取得します。足りない情報はTMDbから取得します。</description>
     <platform>all</platform>
     <license>GPL v2.0</license>
     <assets>

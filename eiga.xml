@@ -8,7 +8,10 @@
 </NfoUrl>
 
 <CreateSearchUrl clearbuffers="no" dest="4">
-  <RegExp input="$$1" output="&lt;url&gt;https://eiga.com/search/\1/movie/&lt;/url&gt;" dest="4">
+  <RegExp input="$$1" output="\1" dest="2+">
+    <expression clear="yes" repeat="yes">(.*?)(%EF%BC%88.*%EF%BC%89|$)</expression>
+  </RegExp>       
+  <RegExp input="$$2" output="&lt;url&gt;https://eiga.com/search/\1/movie/&lt;/url&gt;" dest="4">
     <expression></expression>
   </RegExp>       
 </CreateSearchUrl>
