@@ -1,0 +1,20 @@
+# Kodi Media Center language file
+# Addon Name: eiga.com scraper
+# Addon id: metadata.eiga.com
+# Addon Provider: nisdon
+msgid ""
+msgstr ""
+"Project-Id-Version: Kodi-Addons\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+msgctxt "#30100"
+msgid "search option"
+msgstr "検索オプション"
+
+msgctxt "#30101"
+msgid "to compare title only"
+msgstr "タイトルのみで比較"

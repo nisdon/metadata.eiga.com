@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+	<!-- General -->
+	<category label="30100">
+	  <setting label="30101" type="bool" id="only_title" default="true"/>
+	</category>
+</settings>
