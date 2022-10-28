@@ -86,8 +86,8 @@
       <expression>itemprop=&quot;ratingValue&quot;&gt;(.*?)&lt;</expression>
     </RegExp>
 
-    <RegExp conditional="only_title" input="$$2" output="\1" dest="14">
-	  <expression>release_date&quot;:&quot;([0-9]+)-</expression>
+    <RegExp conditional="only_title" input="[0-9]+" output="\1" dest="14">
+	  <expression></expression>
     </RegExp>
 
     <RegExp input="$$2" output="\1" dest="5">
