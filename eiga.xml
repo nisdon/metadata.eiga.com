@@ -58,7 +58,7 @@
 
     <RegExp input="$$14" output="&lt;year&gt;\1&lt;/year&gt;" dest="8+">
       <RegExp input="$$1" output="\1" dest="14">
-		<expression>&quot;data&quot;&gt;([0-9]*?)年製作／</expression>
+		<expression>&quot;data&quot;&gt; ?([0-9]*?)年製作／</expression>
       </RegExp>
 	  <expression></expression>
     </RegExp>
@@ -79,7 +79,7 @@
     </RegExp>
 
     <RegExp input="$$1" output="&lt;actor&gt;&lt;name&gt;\2&lt;/name&gt;&lt;thumb&gt;\1&lt;/thumb&gt;&lt;/actor&gt;" dest="8+">
-        <expression repeat="yes">itemprop=&quot;actor&quot;.*?&lt;img src=&quot;(.*?)\?.*?alt=&quot;(.*?)&quot;</expression>
+        <expression repeat="yes">itemprop=&quot;actor&quot;.*? src=&quot;(.*?)\?.*?&quot;name&quot;&gt;(.*?)&lt;</expression>
     </RegExp>
 
     <RegExp input="$$1" output="&lt;ratings&gt;&lt;rating max=&quot;5&quot;&gt;&lt;value&gt;\1&lt;/value&gt;&lt;/rating&gt;&lt;/ratings&gt;" dest="8+">
